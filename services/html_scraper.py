@@ -80,11 +80,7 @@ async def parse_html_search(data: dict) -> list[dict]:
     for entity_id, data_row in data["rows"].items():
         entity_name = data_row.get("TITLE", [""])[0]  # берём первую строку из TITLE
         status = data_row.get("STATUS", "")
-        match = re.search(r'\((\d+)\)', entity_name)
-        if match:
-            id = match.group(1)
-        else:
-            id = entity_id
+        id = data_row.get("RECORD_NUM", "").lstrip("0")
         results.append({
                 "state": STATE,
                 "name": entity_name,
