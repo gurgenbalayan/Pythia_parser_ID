@@ -1,8 +1,6 @@
 import json
 import re
-
 import aiohttp
-from bs4 import BeautifulSoup
 from utils.logger import setup_logger
 import os
 from dotenv import load_dotenv
