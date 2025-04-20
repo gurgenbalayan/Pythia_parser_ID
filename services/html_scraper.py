@@ -13,7 +13,7 @@ logger = setup_logger("scraper")
 
 async def fetch_company_details(url: str) -> dict:
     try:
-        match = re.search(r"business/(\d+)/", url)
+        match = re.search(r"/business/([A-Z0-9]+)/", url)
         if match:
             id = match.group(1)
             url_search = "https://sosbiz.idaho.gov/api/Records/businesssearch"
