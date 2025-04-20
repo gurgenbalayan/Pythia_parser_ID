@@ -142,12 +142,12 @@ async def parse_html_details(data: dict, record_num: str, id: str, name: str, ag
     return {
         "state": STATE,
         "name": name,
-        "status": status.strip(),
+        "status": status.strip() if status else None,
         "registration_number": id,
-        "date_registered": date_registered.strip(),
-        "entity_type": entity_type.strip(),
+        "date_registered": date_registered.strip() if date_registered else None,
+        "entity_type": entity_type.strip() if entity_type else None,
         "agent_name": agent,
-        "principal_address": principal_address.strip(),
-        "mailing_address": mailing_address.strip(),
+        "principal_address": principal_address.strip() if principal_address else None,
+        "mailing_address": mailing_address.strip() if mailing_address else None,
         "document_images": document_images
     }
