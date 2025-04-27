@@ -10,7 +10,6 @@ STATE = os.getenv("STATE")
 logger = setup_logger("scraper")
 
 
-
 async def fetch_company_details(url: str) -> dict:
     try:
         match = re.search(r"/business/([A-Z0-9]+)/", url)
