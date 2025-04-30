@@ -36,7 +36,7 @@ async def fetch_company_details(url: str) -> dict:
                     record_num, id, name, agent = result["record_num"], result["id"], result["name"], result["agent"]
         else:
             logger.error(f"Error fetching data for query '{url}'")
-            return []
+            return {}
         new_url = re.sub(r'(?<=business/)\d+(?=/)', id, url)
         async with aiohttp.ClientSession() as session:
             async with session.get(new_url) as response:
@@ -45,7 +45,7 @@ async def fetch_company_details(url: str) -> dict:
                 return await parse_html_details(data, record_num, id, name, agent)
     except Exception as e:
         logger.error(f"Error fetching data for query '{url}': {e}")
-        return []
+        return {}
 async def fetch_company_data(query: str) -> list[dict]:
     url = "https://sosbiz.idaho.gov/api/Records/businesssearch"
     payload = json.dumps({
